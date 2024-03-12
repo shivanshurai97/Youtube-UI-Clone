@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# YouTube UI Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a clone of the user interface of YouTube, built using React and JavaScript. It aims to replicate the look and feel of YouTube's main functionalities, such as search, video playback, sidebar navigation, and live chat.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- **React**: The project is built using React, a JavaScript library for building user interfaces.
 
-### `npm start`
+- **Redux Toolkit**: Redux Toolkit is used for state management, a main store with separate slices for managing different aspects of the application's data, including app state, chat messages, and search results.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **react-router-dom**: React Router is used for client-side routing in the application, enabling navigation between different views.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Tailwind CSS**: Tailwind CSS is used for styling the components, providing a utility-first approach to styling.
 
-### `npm test`
+# App Layout Structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This section provides an overview of the component structure of the YouTube UI Clone application.
 
-### `npm run build`
+## AppLayout
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Header**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  - Hamburger Icon _(to toggle Sidebar)_
+  - Logo
+  - SearchBar
+  - User Icon
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Body**
+  - Sidebar
+  - MainContainer
+    - ButtonList _(with horizontal scrolling)_
+    - VideoContainer _(with infinite scroll)_
+    - SearchResults _(with infinite scrolling)_
+  - WatchPage
+    - EmbeddedVideoPlayer _(using iframe)_
+    - CommentSection _(with nested comments)_
+    - LiveChat _(with continuous chat messages)_
+  - Shimmer _(for loading effect)_
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Header
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- The Header component contains the youtube icon, search functionality, and user profile.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Search Bar
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The search bar is optimized for performance, implementing debouncing to minimize API calls to the YouTube Data API.
 
-## Learn More
+### Sidebar
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- The Sidebar component is toggled based on a global state variable and provides navigation to different sections of the application.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### MainContainer
 
-### Code Splitting
+- The MainContainer component contains two sub-components:
+  - ButtonList: Displays category buttons with horizontal scrolling functionality.
+  - VideoContainer: Displays video cards with an infinite scroll feature, fetching additional videos as the user scrolls.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### WatchPage
 
-### Analyzing the Bundle Size
+- The WatchPage component replaces the MainContainer when a video is selected. It includes an embedded video player using an iframe and a nested comment section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### LiveChat
 
-### Making a Progressive Web App
+- The LiveChat component displays live chat messages fetched using API polling. It includes the ability to send new chat messages from the UI. It is included in the WatchPage itself.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### SearchResults
 
-### Advanced Configuration
+- The SearchResults component displays search results with infinite scrolling functionality, utilizing the Intersection Observer API.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Shimmer Component
 
-### Deployment
+- The Shimmer Component is used to display a shimmer effect, enhancing the UI/UX experience for users while content is loading.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Usage
 
-### `npm run build` fails to minify
+To run the project locally:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone this repository.
+2. Install dependencies using `npm install`.
+3. Run the development server using `npm start`.
+
+## Acknowledgements
+
+- This project utilizes the YouTube Data API for fetching video data.
